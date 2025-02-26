@@ -1,0 +1,146 @@
+.home {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 1376px;
+  height: 736px;
+  color: white;
+}
+
+.homeContainer {
+  background: #103931;
+  margin: 32px;
+  border-radius: 30px;
+  width: 1376px;
+  height: 736px;
+  flex-shrink: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.homeContent {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin: 0px 0 0px 96px;
+  width: 517px;
+  height: 322px;
+}
+
+.homeContent h1 {
+  color: #fbfbfb;
+
+  font-size: 70px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 70px; /* 100% */
+  letter-spacing: -2.1px;
+  margin: 0 0 28px 0;
+}
+
+.homeContent p {
+  color: #fbfbfb;
+
+  font-size: 28px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 30px; /* 107.143% */
+  letter-spacing: -0.56px;
+  margin: 0 0 64px 0;
+}
+
+.btnPrimary {
+  display: flex;
+  width: 131px;
+  height: 24px;
+  padding: 18px 50px;
+  justify-content: center;
+  align-items: center;
+  gap: 18px;
+  border-radius: 30px;
+  border: 1px solid rgba(251, 251, 251, 0.4);
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  font-weight: 500;
+  background: transparent;
+  transition: all 0.3s ease-in-out;
+}
+
+.btnPrimary:hover {
+  background: rgba(251, 251, 251, 0.1);
+}
+
+.iconArrow {
+  width: 18px;
+  height: 18px;
+  fill: #fbfbfb; /* Или другой цвет */
+}
+
+.homeImage {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeImage img {
+  max-width: 100%;
+  border-radius: 10px;
+}
+
+.statsBox {
+  flex-shrink: 0;
+  border-radius: 20px;
+  background: #fbfbfb;
+  display: flex;
+  position: absolute;
+  flex-direction: row;
+  gap: 16px;
+  padding: 32px;
+
+  bottom: 50px; /* Отступ от нижнего края */
+  right: 50px; /* Отступ от правого края */
+  box-sizing: border-box;
+}
+
+.iconCheck {
+  width: 30px;
+  height: 30px;
+  flex-shrink: 0;
+  padding: 12px;
+}
+
+.greenBox {
+  width: 54px;
+  height: 54px;
+
+  flex-shrink: 0;
+  border-radius: 13px;
+  background: #103931;
+}
+
+.textBox {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 6px;
+}
+
+.textBox span {
+  color: rgba(17, 16, 28, 0.5);
+
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: normal;
+}
+
+.textBox strong {
+  color: #11101c;
+
+  font-size: 24px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
