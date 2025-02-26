@@ -4,13 +4,13 @@ import { getFirestore } from "firebase/firestore";
 
 // Конфигурация Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyCYUTDA2FfVzdpi8Cn5iZ0JLQcJ28tsx3o",
-  authDomain: "nanny-services-a.firebaseapp.com",
-  projectId: "nanny-services-a",
-  storageBucket: "nanny-services-a.appspot.com",
-  messagingSenderId: "1066232107891",
-  appId: "1:1066232107891:web:6bc209fbd6bca64953ab06",
-  measurementId: "G-EL5305XJD2",
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
+  authDomain: import.meta.env.VITE_FIREBASE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_FIREBASE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: import.meta.env.VITE_FIREBASE_MESSAGING_SENDER_ID,
+  appId: import.meta.env.VITE_FIREBASE_APP_ID,
+  measurementId: import.meta.env.VITE_FIREBASE_MEASUREMENT_ID,
 };
 
 // Инициализация Firebase
