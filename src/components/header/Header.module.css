@@ -51,7 +51,8 @@
   display: flex;
 }
 
-.loginBtn {
+.loginBtn,
+.logoutBtn {
   display: flex;
   padding: 14px 39px;
   justify-content: center;
@@ -93,6 +94,35 @@
   letter-spacing: -0.16px;
   transition: background 0.3s ease-in-out;
 }
+
 .registerBtn:hover {
   background: #0c2b25;
+}
+
+.userSection {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.userIcon {
+  width: 24px;
+  height: 24px;
+  fill: #103931;
+}
+
+.userName {
+  font-size: 16px;
+  color: white;
+  margin-right: 14px;
+}
+.userIconWrapper {
+  width: 40px;
+  height: 40px;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: #fbfbfb;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

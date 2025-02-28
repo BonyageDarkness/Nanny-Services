@@ -1,0 +1,46 @@
+.favoritesContainer {
+  display: flex;
+  flex-direction: column;
+  padding: 32px 128px 100px 128px;
+  background: #f3f3f3;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.favoritesHeader {
+  display: flex;
+  background-color: #103931;
+  padding: 20px 128px;
+  position: relative;
+  align-items: center;
+  max-height: 88px;
+  flex-shrink: 0;
+  justify-content: space-between;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.noItems {
+  font-size: 20px;
+  color: #666;
+}
+.nanniesHeader {
+  display: flex;
+  background-color: #103931;
+  padding: 20px 128px;
+  position: relative;
+  align-items: center;
+  max-height: 88px;
+  flex-shrink: 0;
+  justify-content: space-between; /* Оставляем */
+}
+
+.nanniesHeader .navbtn {
+  display: flex;
+  flex-grow: 1; /* Растягиваем навигацию */
+  justify-content: center; /* Центрируем */
+}

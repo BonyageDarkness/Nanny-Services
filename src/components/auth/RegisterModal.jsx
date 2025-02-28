@@ -1,6 +1,6 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { auth, db } from "../../firebase/firebase";
+import { auth, firestoreDB } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import styles from "./Auth.module.css";
@@ -34,7 +34,7 @@ const RegisterModal = ({ isOpen, onClose }) => {
       );
       const user = userCredential.user;
 
-      await setDoc(doc(db, "users", user.uid), {
+      await setDoc(doc(firestoreDB, "users", user.uid), {
         name: formData.name,
         email: formData.email,
         createdAt: new Date(),
