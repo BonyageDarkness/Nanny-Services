@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { collection, getDocs } from "firebase/firestore";
-import { db } from "../firebase/firebase"; // Убедись, что путь правильный
+import { db } from "../firebase/firebase";
 
 export const useFetchNannies = () => {
   const [nannies, setNannies] = useState([]);

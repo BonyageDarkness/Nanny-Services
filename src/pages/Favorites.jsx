@@ -5,16 +5,15 @@ import {
   selectFavorites,
 } from "../redux/favorites/favoritesSlice";
 import Header from "../components/header/Header";
-import Filter from "../components/filters/Filters"; // Подключаем фильтр
+import Filter from "../components/filters/Filters";
 import NannyList from "../components/nannylist/NannyList";
 import styles from "./Favorites.module.css";
 
 const FavoritesPage = () => {
   const dispatch = useDispatch();
-  const favorites = useSelector(selectFavorites); // Берем избранных из Redux
+  const favorites = useSelector(selectFavorites);
   const [filter, setFilter] = useState("Show all");
 
-  // Фильтрация избранных нянь
   const filteredFavorites = () => {
     switch (filter) {
       case "A to Z":
@@ -38,10 +37,8 @@ const FavoritesPage = () => {
     <div>
       <Header variant="dark" positionClass={styles.favoritesHeader} />
       <main className={styles.favoritesContainer}>
-        {/* Фильтр */}
         <Filter filter={filter} setFilter={setFilter} />
 
-        {/* Список нянь */}
         {filteredFavorites().length > 0 ? (
           <NannyList
             displayedNannies={filteredFavorites()}

@@ -9,7 +9,7 @@ export const fetchNannies = createAsyncThunk(
       const snapshot = await get(ref(database, "nannies"));
 
       if (snapshot.exists()) {
-        const data = Object.values(snapshot.val()); // Преобразуем объект в массив
+        const data = Object.values(snapshot.val());
 
         return data;
       } else {

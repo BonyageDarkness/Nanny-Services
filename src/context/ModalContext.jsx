@@ -21,7 +21,6 @@ export const ModalProvider = ({ children }) => {
   );
 };
 
-// ✅ Добавляем проверку пропсов
 ModalProvider.propTypes = {
   children: PropTypes.node.isRequired,
 };

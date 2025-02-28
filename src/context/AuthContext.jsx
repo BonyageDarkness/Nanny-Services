@@ -24,7 +24,6 @@ export const AuthProvider = ({ children }) => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         try {
-          // Загружаем имя пользователя из Firestore
           const userDoc = await getDoc(
             doc(firestoreDB, "users", currentUser.uid)
           );
@@ -54,7 +53,6 @@ export const AuthProvider = ({ children }) => {
         email,
         password
       );
-      console.log("🔑 Успешный вход:", userCredential.user.uid);
 
       // Загружаем имя после входа
       const userDoc = await getDoc(
@@ -69,7 +67,7 @@ export const AuthProvider = ({ children }) => {
 
       await dispatch(fetchFavorites(userCredential.user.uid));
     } catch (error) {
-      console.error("❌ Ошибка входа:", error.message);
+      console.error(error.message);
       throw error;
     }
   };
@@ -79,7 +77,7 @@ export const AuthProvider = ({ children }) => {
       await dispatch(clearFavorites(user.uid));
     }
     await signOut(auth);
-    setUser(null); // Очистка данных пользователя
+    setUser(null);
   };
 
   return (

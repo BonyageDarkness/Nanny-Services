@@ -1,15 +1,15 @@
 .header {
-  position: absolute; /* Делаем хедер внутри home */
+  position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   max-width: 1184px;
-  background: transparent; /* Полностью прозрачный фон */
+  background: transparent;
   padding: 20px 96px 20px 96px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  z-index: 10; /* Чтобы был выше контента */
+  z-index: 10;
 
   border-bottom: 1px solid rgba(251, 251, 251, 0.4);
 }

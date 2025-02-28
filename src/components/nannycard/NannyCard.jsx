@@ -3,11 +3,11 @@ import { useSelector, useDispatch } from "react-redux";
 import {
   saveFavorite,
   removeFavorite,
-} from "../../redux/favorites/favoritesOperations"; // ❗ Только асинхронные операции
+} from "../../redux/favorites/favoritesOperations";
 import {
   toggleFavorite,
   selectFavorites,
-} from "../../redux/favorites/favoritesSlice"; // ❗ `selectFavorites` должен быть из `favoritesSlice`
+} from "../../redux/favorites/favoritesSlice";
 
 import PropTypes from "prop-types";
 import styles from "./NannyCard.module.css";
@@ -65,7 +65,7 @@ const NannyCard = ({ nanny }) => {
       return;
     }
 
-    dispatch(toggleFavorite({ ...nanny, id: nannyId })); // ✅ Используем гарантированный ID
+    dispatch(toggleFavorite({ ...nanny, id: nannyId }));
 
     if (isFavorite) {
       dispatch(removeFavorite({ userId: user.uid, nannyId }));
@@ -76,12 +76,11 @@ const NannyCard = ({ nanny }) => {
     }
   };
 
-  // ❗ Меняем логику отображения сердечка
   const favoriteIcon = user
     ? isFavorite
       ? "#heart-green"
       : "#heart"
-    : "#heart"; // 👀 Используем серое сердечко, если нет пользователя
+    : "#heart";
 
   const [isReadMoreVisible, setIsReadMoreVisible] = useState(false);
   const toggleReadMore = () => {
@@ -109,7 +108,6 @@ const NannyCard = ({ nanny }) => {
           <p className={styles.nanny}>Nanny</p>
 
           <div className={styles.cardHeader}>
-            {/* Местоположение */}
             <div className={styles.cardTextBlack}>
               <svg className={styles.icon} style={{ marginRight: "8px" }}>
                 <use href={`${sprite}#map-pin`} />
@@ -117,7 +115,6 @@ const NannyCard = ({ nanny }) => {
               {nanny.location || "Unknown"}
             </div>
 
-            {/* Разделитель между местоположением и рейтингом */}
             <svg
               className={styles.icon}
               style={{
@@ -129,7 +126,6 @@ const NannyCard = ({ nanny }) => {
               <use href={`${sprite}#l`} />
             </svg>
 
-            {/* Рейтинг */}
             <div className={styles.cardTextBlack}>
               <svg className={styles.icon} style={{ marginRight: "8px" }}>
                 <use href={`${sprite}#star`} />
@@ -137,7 +133,6 @@ const NannyCard = ({ nanny }) => {
               Rating: {calculateAverageRating(nanny.reviews)}
             </div>
 
-            {/* Разделитель между рейтингом и ценой */}
             <svg
               className={styles.icon}
               style={{
@@ -149,7 +144,6 @@ const NannyCard = ({ nanny }) => {
               <use href={`${sprite}#l`} />
             </svg>
 
-            {/* Цена */}
             <div className={styles.cardTextBlack}>
               Price / 1 hour:{" "}
               {nanny.price_per_hour ? (
@@ -161,7 +155,6 @@ const NannyCard = ({ nanny }) => {
               )}
             </div>
 
-            {/* Кнопка "Favorite" */}
             <button className={styles.cardButton} onClick={handleFavoriteClick}>
               <svg className={styles.iconHeart}>
                 <use href={`${sprite}${favoriteIcon}`} />
@@ -212,7 +205,6 @@ const NannyCard = ({ nanny }) => {
           {nanny.about || "No description"}
         </p>
 
-        {/* Кнопка для отображения/скрытия отзывов */}
         {!isReadMoreVisible && (
           <button
             className={styles.cardButtonReadMore}
@@ -222,7 +214,6 @@ const NannyCard = ({ nanny }) => {
           </button>
         )}
 
-        {/* Отзывы */}
         {isReadMoreVisible && nanny.reviews && nanny.reviews.length > 0 && (
           <div>
             <h4>Reviews:</h4>
@@ -248,7 +239,6 @@ const NannyCard = ({ nanny }) => {
                   </div>
                 </div>
 
-                {/* Review Text */}
                 <p className={styles.reviewText}>{review.comment}</p>
               </div>
             ))}
@@ -262,7 +252,6 @@ const NannyCard = ({ nanny }) => {
   );
 };
 
-// ПропTypes для проверки типов пропсов
 NannyCard.propTypes = {
   nanny: PropTypes.shape({
     id: PropTypes.string,

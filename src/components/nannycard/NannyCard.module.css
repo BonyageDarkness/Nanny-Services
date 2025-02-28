@@ -73,8 +73,8 @@
 }
 
 .price {
-  color: #38cd3e; /* Зеленый цвет для цены */
-  font-weight: bold; /* Чтобы цена была жирной */
+  color: #38cd3e;
+  font-weight: bold;
 }
 
 .icon {

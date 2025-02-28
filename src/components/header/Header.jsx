@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { useModal } from "../../context/ModalContext";
 import { useAuth } from "../../context/AuthContext";
 import styles from "./Header.module.css";
-import sprite from "../../images/sprites.svg"; // Импортируем спрайт
+import sprite from "../../images/sprites.svg";
 
 const Header = ({ variant = "light", positionClass = "" }) => {
   const { setIsLoginOpen, setIsRegisterOpen } = useModal();

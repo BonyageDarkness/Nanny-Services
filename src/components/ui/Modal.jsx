@@ -14,7 +14,7 @@ const Modal = ({ isOpen, onClose, children }) => {
           </svg>
           я
         </button>
-        {children} {/* Контент модалки */}
+        {children}
       </div>
     </div>
   );

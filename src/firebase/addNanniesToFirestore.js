@@ -1,12 +1,12 @@
-import { realtimeDB } from "./firebase.js"; // ✅ Импортируем Realtime Database
+import { realtimeDB } from "./firebase.js";
 import { ref, set } from "firebase/database";
 import fs from "fs";
 
-const babysitters = JSON.parse(fs.readFileSync("babysitters.json", "utf8")); // ✅ Читаем JSON-файл
+const babysitters = JSON.parse(fs.readFileSync("babysitters.json", "utf8"));
 
 const uploadNanniesToRealtimeDB = async () => {
   try {
-    const nanniesRef = ref(realtimeDB, "nannies"); // ✅ Используем `realtimeDB`
+    const nanniesRef = ref(realtimeDB, "nannies");
 
     await set(nanniesRef, babysitters);
     console.log("✅ All nannies have been uploaded to Realtime Database!");

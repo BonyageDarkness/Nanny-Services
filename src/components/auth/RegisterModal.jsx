@@ -4,7 +4,7 @@ import { auth, firestoreDB } from "../../firebase/firebase";
 import { createUserWithEmailAndPassword } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
 import styles from "./Auth.module.css";
-import sprite from "../../images/sprites.svg"; // Импортируем спрайт
+import sprite from "../../images/sprites.svg";
 import Modal from "../ui/Modal";
 
 const RegisterModal = ({ isOpen, onClose }) => {
@@ -80,7 +80,6 @@ const RegisterModal = ({ isOpen, onClose }) => {
             required
           />
 
-          {/* Блок с паролем и SVG-глазом */}
           <div className={styles.passwordWrapper}>
             <input
               type={showPassword ? "text" : "password"}

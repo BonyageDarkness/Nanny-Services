@@ -9,7 +9,7 @@ import {
 import {
   toggleFavorite,
   selectFavorites,
-} from "../redux/favorites/favoritesSlice"; // Подключаем Redux избранное
+} from "../redux/favorites/favoritesSlice";
 import Header from "../components/header/Header";
 import Filter from "../components/filters/Filters";
 import NannyList from "../components/nannylist/NannyList";

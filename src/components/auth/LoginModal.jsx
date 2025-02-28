@@ -6,7 +6,7 @@ import Modal from "../ui/Modal";
 import { useAuth } from "../../context/AuthContext";
 
 const LoginModal = ({ isOpen, onClose }) => {
-  const { login } = useAuth(); // Используем login из AuthContext
+  const { login } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
@@ -15,9 +15,9 @@ const LoginModal = ({ isOpen, onClose }) => {
   const handleLogin = async () => {
     try {
       await login(email, password);
-      onClose(); // Закрываем модалку после успешного входа
+      onClose();
     } catch {
-      setError("Invalid email or password"); // Выводим сообщение об ошибке
+      setError("Invalid email or password");
     }
   };
 

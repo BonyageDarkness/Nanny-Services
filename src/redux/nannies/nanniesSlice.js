@@ -3,7 +3,7 @@ import { fetchNannies } from "./nanniesOperations";
 
 const initialState = {
   nannies: [],
-  status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
+  status: "idle",
   error: null,
 };
 

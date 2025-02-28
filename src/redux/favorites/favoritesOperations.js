@@ -3,14 +3,12 @@ import { db } from "../../firebase/firebase";
 import {
   collection,
   getDocs,
-  //getDoc,
   setDoc,
   doc,
   deleteDoc,
 } from "firebase/firestore";
-import { getDatabase, ref, get } from "firebase/database"; // Для Realtime Database
+import { getDatabase, ref, get } from "firebase/database";
 
-// ✅ Загружаем избранные из Firestore (Только текущего пользователя)
 export const fetchFavorites = createAsyncThunk(
   "favorites/fetchFavorites",
   async (userId, { rejectWithValue }) => {
@@ -19,7 +17,6 @@ export const fetchFavorites = createAsyncThunk(
     }
 
     try {
-      // Запрос данных из коллекции "favorites" для пользователя
       const querySnapshot = await getDocs(
         collection(db, `users/${userId}/favorites`)
       );
@@ -36,8 +33,6 @@ export const fetchFavorites = createAsyncThunk(
   }
 );
 
-// Сохранение в избранное
-// Сохраняем избранное в Firestore
 export const saveFavorite = createAsyncThunk(
   "favorites/saveFavorite",
   async ({ userId, nannyId }, { dispatch, rejectWithValue }) => {
@@ -46,17 +41,14 @@ export const saveFavorite = createAsyncThunk(
     }
 
     try {
-      // Шаг 1: Подтягиваем данные о няне из Realtime Database
       const nannyRef = ref(getDatabase(), `nannies/${nannyId}`);
       const nannySnapshot = await get(nannyRef);
 
-      const nanny = nannySnapshot.val(); // Данные няни из Realtime Database
+      const nanny = nannySnapshot.val();
 
-      // Шаг 2: Сохраняем данные о няне в Firestore
-      const favoriteRef = doc(db, `users/${userId}/favorites`, nannyId); // Путь в Firestore
-      await setDoc(favoriteRef, nanny); // Сохранение данных
+      const favoriteRef = doc(db, `users/${userId}/favorites`, nannyId);
+      await setDoc(favoriteRef, nanny);
 
-      // Шаг 3: Загружаем обновленные избранные данные
       dispatch(fetchFavorites(userId));
 
       return nanny;
@@ -66,23 +58,21 @@ export const saveFavorite = createAsyncThunk(
   }
 );
 
-// ✅ Удаляем из избранного
 export const removeFavorite = createAsyncThunk(
   "favorites/removeFavorite",
   async ({ userId, nannyId }, { dispatch }) => {
     if (!userId) throw new Error("User not logged in");
 
     await deleteDoc(doc(db, `users/${userId}/favorites`, nannyId));
-    dispatch(fetchFavorites(userId)); // ✅ Обновляем список
+    dispatch(fetchFavorites(userId));
     return nannyId;
   }
 );
 
-// ✅ Полностью очищаем избранное при выходе
 export const clearFavorites = createAsyncThunk(
   "favorites/clearFavorites",
   async (_, { getState }) => {
     const { userId } = getState().favorites;
-    return userId; // ✅ Передаём ID пользователя, который выходит
+    return userId;
   }
 );

@@ -57,7 +57,7 @@
 }
 
 .filterContainer select {
-  appearance: none; /* Убираем стрелку в браузерах */
+  appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   position: relative;
@@ -127,11 +127,11 @@
   align-items: center;
   max-height: 88px;
   flex-shrink: 0;
-  justify-content: space-between; /* Оставляем */
+  justify-content: space-between;
 }
 
 .nanniesHeader .navbtn {
   display: flex;
-  flex-grow: 1; /* Растягиваем навигацию */
-  justify-content: center; /* Центрируем */
+  flex-grow: 1;
+  justify-content: center;
 }

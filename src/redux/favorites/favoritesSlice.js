@@ -9,8 +9,8 @@ import {
 const favoritesSlice = createSlice({
   name: "favorites",
   initialState: {
-    favorites: [], // ✅ Храним список избранных
-    userId: null, // ✅ Храним ID пользователя
+    favorites: [],
+    userId: null,
   },
   reducers: {
     toggleFavorite: (state, action) => {
@@ -20,18 +20,18 @@ const favoritesSlice = createSlice({
       );
 
       if (existingIndex >= 0) {
-        state.favorites.splice(existingIndex, 1); // ✅ Удаляем из избранного
+        state.favorites.splice(existingIndex, 1);
       } else {
-        state.favorites.push(nanny); // ✅ Добавляем в избранное
+        state.favorites.push(nanny);
       }
     },
     addFavoriteLocal: (state, action) => {
-      state.favorites.push(action.payload); // ✅ Локальное добавление
+      state.favorites.push(action.payload);
     },
     removeFavoriteLocal: (state, action) => {
       state.favorites = state.favorites.filter(
         (fav) => fav.id !== action.payload
-      ); // ✅ Локальное удаление
+      );
     },
   },
   extraReducers: (builder) => {
@@ -42,15 +42,13 @@ const favoritesSlice = createSlice({
           action.payload
         );
         state.favorites = action.payload.favorites || [];
-        state.userId = action.payload.userId; // ✅ Привязываем избранное к пользователю
+        state.userId = action.payload.userId;
       })
 
       .addCase(saveFavorite.fulfilled, (state, action) => {
-        console.log("✅ Добавлено в избранное:", action.payload);
         state.favorites.push(action.payload);
       })
       .addCase(removeFavorite.fulfilled, (state, action) => {
-        console.log("❌ Удалено из избранного:", action.payload);
         state.favorites = state.favorites.filter(
           (fav) => fav.id !== action.payload
         );
@@ -58,9 +56,9 @@ const favoritesSlice = createSlice({
       .addCase(clearFavorites.fulfilled, (state, action) => {
         console.log("🚪 Выход из аккаунта. Очищаем локальное избранное.");
         if (state.userId === action.payload) {
-          state.favorites = []; // ✅ Очищаем только если это ТЕКУЩИЙ пользователь
+          state.favorites = [];
         }
-        state.userId = null; // ✅ Отвязываем пользователя
+        state.userId = null;
       });
   },
 });
