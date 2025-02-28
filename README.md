@@ -42,7 +42,7 @@ git clone https://github.com/BonyageDarkness/Nanny-Services.git
 cd Nanny-Services
 npm install
 npm run dev
-
+```
 
 📌 Live Demo: https://bonyagedarkness.github.io/Nanny-Services/
 
@@ -50,5 +50,3 @@ npm run dev
 If you want to contribute, feel free to submit an Issue or Pull Request.
 
 📩 Author: Bohdan Pastushenko
-
-```
