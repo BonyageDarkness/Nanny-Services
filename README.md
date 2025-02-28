@@ -23,7 +23,7 @@ Nanny-Services provides a user-friendly platform where parents can:
 
 ## 🎨 Figma Design
 
-📌 [https://www.figma.com/file/u36ajEOsnwio2GDGiabVPD/Nanny-Sevices?type=design&node-id=0-1&mode=design&t=CZpMnnOCRwAYc81O-0](#) (if available)
+📌 [https://www.figma.com/file/u36ajEOsnwio2GDGiabVPD/Nanny-Sevices?type=design&node-id=0-1&mode=design&t=CZpMnnOCRwAYc81O-0](#) 
 
 ## 📜 Features & Requirements
 
