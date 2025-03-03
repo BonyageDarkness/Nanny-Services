@@ -9,6 +9,7 @@ import {
   selectFavorites,
 } from "../../redux/favorites/favoritesSlice";
 
+import Appoint from "../appoint/Appoints";
 import PropTypes from "prop-types";
 import styles from "./NannyCard.module.css";
 import sprite from "../../images/sprites.svg";
@@ -41,6 +42,10 @@ const calculateAverageRating = (reviews) => {
 
 const NannyCard = ({ nanny }) => {
   const dispatch = useDispatch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+
   const favorites = useSelector(selectFavorites);
   const { user } = useAuth();
 
@@ -242,12 +247,13 @@ const NannyCard = ({ nanny }) => {
                 <p className={styles.reviewText}>{review.comment}</p>
               </div>
             ))}
-            <button className={styles.cardButtonMake}>
+            <button className={styles.cardButtonMake} onClick={openModal}>
               Make an appointment
             </button>
           </div>
         )}
       </div>
+      <Appoint nanny={nanny} isOpen={isModalOpen} onClose={closeModal} />
     </div>
   );
 };

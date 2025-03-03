@@ -6,9 +6,8 @@
 <symbol id="chevron-down" viewBox="0 0 32 32">
 <path fill="none" stroke="#fbfbfb" style="stroke: var(--color1, #fbfbfb)" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M8 12l8 8 8-8"></path>
 </symbol>
-<symbol id="clock" viewBox="0 0 32 32">
-<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.4" d="M15.999 29.333c7.364 0 13.333-5.97 13.333-13.333s-5.97-13.333-13.333-13.333c-7.364 0-13.333 5.97-13.333 13.333s5.97 13.333 13.333 13.333z"></path>
-<path stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="2.4" d="M16 8v8l5.333 2.667"></path>
+<symbol id="clock" viewBox="0 0 20 20">
+<g stroke="#11101C" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" clip-path="url(#a)"><path d="M10 18.333a8.333 8.333 0 1 0 0-16.666 8.333 8.333 0 0 0 0 16.666Z"/><path d="M10 5v5l3.333 1.667"/></g><defs><clipPath id="a"><path fill="#fff" d="M0 0h20v20H0z"/></clipPath></defs>
 </symbol>
 <symbol id="eye" viewBox="0 0 32 32">
 <path stroke="currentColor" stroke-linejoin="round" stroke-linecap="round" stroke-miterlimit="4" stroke-width="3.2" d="M1.333 16c0 0 5.333-10.667 14.667-10.667s14.667 10.667 14.667 10.667c0 0-5.333 10.667-14.667 10.667s-14.667-10.667-14.667-10.667z"></path>
