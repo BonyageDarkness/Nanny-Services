@@ -1,100 +1,85 @@
-import { useState, useMemo } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  saveFavorite,
-  removeFavorite,
-} from "../../redux/favorites/favoritesOperations";
-import {
-  toggleFavorite,
-  selectFavorites,
-} from "../../redux/favorites/favoritesSlice";
-
-import Appoint from "../appoint/Appoints";
+import { useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import styles from "./NannyCard.module.css";
 import sprite from "../../images/sprites.svg";
 import { useAuth } from "../../context/AuthContext";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Appoint from "../appoint/Appoints";
 
 const calculateAge = (birthday) => {
   const birthDate = new Date(birthday);
   const today = new Date();
   let age = today.getFullYear() - birthDate.getFullYear();
   const monthDiff = today.getMonth() - birthDate.getMonth();
-
   if (
     monthDiff < 0 ||
     (monthDiff === 0 && today.getDate() < birthDate.getDate())
   ) {
     age--;
   }
-
   return age;
 };
 
 const calculateAverageRating = (reviews) => {
   if (!reviews || reviews.length === 0) return "N/A";
-
   const totalRating = reviews.reduce((sum, review) => sum + review.rating, 0);
-  return totalRating / reviews.length.toFixed(1);
+  return (totalRating / reviews.length).toFixed(1);
 };
 
-const NannyCard = ({ nanny }) => {
-  const dispatch = useDispatch();
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  const favorites = useSelector(selectFavorites);
+const NannyCard = ({ nanny, updateFavorites }) => {
   const { user } = useAuth();
-
   const nannyId = nanny.id || nanny._id || nanny.name;
 
-  const isFavorite = useMemo(() => {
-    if (!nannyId) return false;
-    return favorites.some((fav) => fav?.id === nannyId);
-  }, [favorites, nannyId]);
+  const [isFavorite, setIsFavorite] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isReadMoreVisible, setIsReadMoreVisible] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
+  const toggleReadMore = () => setIsReadMoreVisible(!isReadMoreVisible);
+
+  const getFavoritesFromStorage = () => {
+    if (!user) return [];
+    return JSON.parse(localStorage.getItem(`favorites_${user.uid}`)) || [];
+  };
+
+  useEffect(() => {
+    const savedFavorites = getFavoritesFromStorage();
+    const isFav = savedFavorites.some((fav) => fav.id === nannyId);
+    setIsFavorite(isFav);
+  }, [user, nannyId]);
 
   const handleFavoriteClick = () => {
     if (!user) {
       toast.warn("You need to be logged in to add favorites!", {
         position: "top-left",
         autoClose: 3000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
         theme: "dark",
       });
       return;
     }
 
-    dispatch(toggleFavorite({ ...nanny, id: nannyId }));
+    let userFavorites =
+      JSON.parse(localStorage.getItem(`favorites_${user.uid}`)) || [];
+    let updatedFavorites;
 
     if (isFavorite) {
-      dispatch(removeFavorite({ userId: user.uid, nannyId }));
+      updatedFavorites = userFavorites.filter((fav) => fav.id !== nannyId);
     } else {
-      dispatch(
-        saveFavorite({ userId: user.uid, nanny: { ...nanny, id: nannyId } })
-      );
+      updatedFavorites = [...userFavorites, { ...nanny, id: nannyId }];
+    }
+
+    localStorage.setItem(
+      `favorites_${user.uid}`,
+      JSON.stringify(updatedFavorites)
+    );
+    setIsFavorite(!isFavorite);
+
+    if (typeof updateFavorites === "function") {
+      updateFavorites(nannyId);
     }
   };
-
-  const favoriteIcon = user
-    ? isFavorite
-      ? "#heart-green"
-      : "#heart"
-    : "#heart";
-
-  const [isReadMoreVisible, setIsReadMoreVisible] = useState(false);
-  const toggleReadMore = () => {
-    setIsReadMoreVisible(!isReadMoreVisible);
-  };
-
-  if (!nannyId) {
-    return <p>Loading nanny data...</p>;
-  }
 
   return (
     <div className={styles.card}>
@@ -162,7 +147,9 @@ const NannyCard = ({ nanny }) => {
 
             <button className={styles.cardButton} onClick={handleFavoriteClick}>
               <svg className={styles.iconHeart}>
-                <use href={`${sprite}${favoriteIcon}`} />
+                <use
+                  href={`${sprite}${isFavorite ? "#heart-green" : "#heart"}`}
+                />
               </svg>
             </button>
           </div>
@@ -280,6 +267,7 @@ NannyCard.propTypes = {
       })
     ),
   }).isRequired,
+  updateFavorites: PropTypes.func,
 };
 
 export default NannyCard;

@@ -1,20 +1,45 @@
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import {
-  toggleFavorite,
-  selectFavorites,
-} from "../redux/favorites/favoritesSlice";
+import { useState, useEffect } from "react";
 import Header from "../components/header/Header";
 import Filter from "../components/filters/Filters";
 import NannyList from "../components/nannylist/NannyList";
 import styles from "./Favorites.module.css";
+import { useAuth } from "../context/AuthContext";
 
 const FavoritesPage = () => {
-  const dispatch = useDispatch();
-  const favorites = useSelector(selectFavorites);
+  const { user } = useAuth();
+  const [favorites, setFavorites] = useState([]);
   const [filter, setFilter] = useState("Show all");
 
+  // Загружаем избранные няни при загрузке страницы
+  useEffect(() => {
+    if (user) {
+      const savedFavorites =
+        JSON.parse(localStorage.getItem(`favorites_${user.uid}`)) || [];
+      setFavorites(savedFavorites);
+    }
+  }, [user]);
+
+  // Функция удаления няни из избранного
+  const updateFavorites = (nannyId) => {
+    setFavorites((prevFavorites) => {
+      const updatedFavorites = prevFavorites.filter(
+        (nanny) => nanny.id !== nannyId
+      );
+
+      // ✅ Синхронизируем localStorage
+      localStorage.setItem(
+        `favorites_${user.uid}`,
+        JSON.stringify(updatedFavorites)
+      );
+
+      return updatedFavorites;
+    });
+  };
+
+  // Фильтрация избранных нянь
   const filteredFavorites = () => {
+    if (!favorites.length) return [];
+
     switch (filter) {
       case "A to Z":
         return [...favorites].sort((a, b) => a.name.localeCompare(b.name));
@@ -46,8 +71,7 @@ const FavoritesPage = () => {
         {filteredFavorites().length > 0 ? (
           <NannyList
             displayedNannies={filteredFavorites()}
-            favorites={favorites}
-            toggleFavorite={(nanny) => dispatch(toggleFavorite(nanny))}
+            updateFavorites={updateFavorites}
           />
         ) : (
           <p className={styles.noItems}>No favorites yet.</p>

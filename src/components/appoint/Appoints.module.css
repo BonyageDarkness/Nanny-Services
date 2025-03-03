@@ -128,8 +128,8 @@ select {
   right: 18px;
   bottom: 33px;
   pointer-events: none;
-  stroke: #11101c; /* Цвет линий */
-  fill: none; /* Убираем заливку */
+  stroke: #11101c;
+  fill: none;
 }
 
 .dropdown {

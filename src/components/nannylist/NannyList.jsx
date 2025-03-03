@@ -2,20 +2,16 @@ import PropTypes from "prop-types";
 import NannyCard from "../nannycard/NannyCard";
 import styles from "./NannyList.module.css";
 
-const NannyList = ({ displayedNannies, favorites, toggleFavorite }) => {
+const NannyList = ({ displayedNannies }) => {
   return (
     <div className={styles.nanniesList}>
       {displayedNannies.length > 0 ? (
-        displayedNannies.filter(Boolean).map((nanny) => {
-          return (
-            <NannyCard
-              key={nanny?.id || nanny?._id || nanny?.name}
-              nanny={nanny}
-              favorites={favorites || []}
-              toggleFavorite={toggleFavorite}
-            />
-          );
-        })
+        displayedNannies.map((nanny) => (
+          <NannyCard
+            key={nanny?.id || nanny?._id || nanny?.name}
+            nanny={nanny}
+          />
+        ))
       ) : (
         <p className={styles.noItems}>There are no items.</p>
       )}
@@ -25,8 +21,6 @@ const NannyList = ({ displayedNannies, favorites, toggleFavorite }) => {
 
 NannyList.propTypes = {
   displayedNannies: PropTypes.array.isRequired,
-  favorites: PropTypes.array.isRequired,
-  toggleFavorite: PropTypes.func.isRequired,
 };
 
 export default NannyList;
