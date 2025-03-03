@@ -44,7 +44,7 @@ const Appoints = ({ nanny, isOpen, onClose }) => {
   };
 
   return (
-    <Modal isOpen={isOpen} onClose={onClose}>
+    <Modal isOpen={isOpen} onClose={onClose} className={styles.largeModal}>
       <div className={styles.appContainer}>
         <div className={styles.appText}>
           <h2>Make an appointment with a babysitter</h2>
