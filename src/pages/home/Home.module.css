@@ -6,6 +6,13 @@
   height: 736px;
   color: white;
 }
+.rightNav {
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+  margin-left: auto;
+  margin-right: 92px;
+}
 
 .homeContainer {
   background: #103931;

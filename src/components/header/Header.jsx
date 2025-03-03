@@ -16,7 +16,16 @@ const Header = ({ variant = "light", positionClass = "" }) => {
       } ${positionClass}`.trim()}
     >
       <div className={styles.logo}>Nanny.Services</div>
-      <div className={styles.navbtn}>
+
+      <div
+        className={`${styles.navbtn} 
+                  ${positionClass.includes("rightNav") ? styles.rightNav : ""} 
+                  ${
+                    positionClass.includes("centeredNav")
+                      ? styles.centeredNav
+                      : ""
+                  }`}
+      >
         <nav className={styles.nav}>
           <Link to="/" className={styles.link}>
             Home
@@ -30,38 +39,39 @@ const Header = ({ variant = "light", positionClass = "" }) => {
             </Link>
           )}
         </nav>
-        <div className={styles.authButtons}>
-          {user ? (
-            <div className={styles.userSection}>
-              <div className={styles.userIconWrapper}>
-                <svg className={styles.userIcon}>
-                  <use href={`${sprite}#mdi_user`} />
-                </svg>
-              </div>
-              <span className={styles.userName}>
-                {user.displayName || "User"}
-              </span>
-              <button className={styles.logoutBtn} onClick={logout}>
-                Log Out
-              </button>
+      </div>
+
+      <div className={styles.authButtons}>
+        {user ? (
+          <div className={styles.userSection}>
+            <div className={styles.userIconWrapper}>
+              <svg className={styles.userIcon}>
+                <use href={`${sprite}#mdi_user`} />
+              </svg>
             </div>
-          ) : (
-            <>
-              <button
-                className={styles.loginBtn}
-                onClick={() => setIsLoginOpen(true)}
-              >
-                Log In
-              </button>
-              <button
-                className={styles.registerBtn}
-                onClick={() => setIsRegisterOpen(true)}
-              >
-                Registration
-              </button>
-            </>
-          )}
-        </div>
+            <span className={styles.userName}>
+              {user.displayName || "User"}
+            </span>
+            <button className={styles.logoutBtn} onClick={logout}>
+              Log Out
+            </button>
+          </div>
+        ) : (
+          <>
+            <button
+              className={styles.loginBtn}
+              onClick={() => setIsLoginOpen(true)}
+            >
+              Log In
+            </button>
+            <button
+              className={styles.registerBtn}
+              onClick={() => setIsRegisterOpen(true)}
+            >
+              Registration
+            </button>
+          </>
+        )}
       </div>
     </header>
   );

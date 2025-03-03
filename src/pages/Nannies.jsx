@@ -61,7 +61,11 @@ const NanniesPage = () => {
 
   return (
     <div>
-      <Header variant="dark" positionClass={styles.nanniesHeader} />
+      <Header
+        variant="dark"
+        positionClass={`${styles.nanniesHeader} ${styles.centeredNav}`}
+      />
+
       <main className={styles.nanniesContainer}>
         <Filter filter={filter} setFilter={setFilter} />
         <NannyList

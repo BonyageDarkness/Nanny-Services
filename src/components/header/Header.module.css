@@ -31,6 +31,14 @@
   gap: 92px;
 }
 
+.rightNav {
+  display: flex;
+  justify-content: flex-end;
+  width: auto;
+  margin-left: auto;
+  margin-right: 92px;
+}
+
 .nav {
   display: flex;
   gap: 40px;
@@ -125,4 +133,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+.centeredNav .navbtn {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+  width: 100%;
+  max-width: 500px;
 }

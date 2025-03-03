@@ -8,7 +8,7 @@ import Header from "../../components/header/Header";
 const Home = () => {
   return (
     <div className={styles.homeContainer}>
-      <Header />
+      <Header variant="dark" positionClass={styles.rightNav} />
 
       <main className={styles.home}>
         <div className={styles.homeContent}>

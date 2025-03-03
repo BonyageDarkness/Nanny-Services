@@ -35,7 +35,11 @@ const FavoritesPage = () => {
 
   return (
     <div>
-      <Header variant="dark" positionClass={styles.favoritesHeader} />
+      <Header
+        variant="dark"
+        positionClass={`${styles.favoritesHeader} ${styles.centeredNav}`}
+      />
+
       <main className={styles.favoritesContainer}>
         <Filter filter={filter} setFilter={setFilter} />
 
