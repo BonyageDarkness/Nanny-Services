@@ -231,6 +231,7 @@
   gap: 8px;
   border-radius: 30px;
   background: #103931;
+  cursor: pointer;
 
   color: #fbfbfb;
 
@@ -240,4 +241,8 @@
   line-height: 20px; /* 125% */
   letter-spacing: -0.16px;
   margin-top: 23px;
+}
+
+.cardButtonMake:hover {
+  background-color: #1c6556;
 }

@@ -86,7 +86,6 @@ textarea {
   font-style: normal;
   font-weight: 400;
   line-height: 20px; /* 125% */
-  margin-bottom: 16px; /* Добавлено для выравнивания отступов */
 }
 
 textarea {
@@ -244,6 +243,7 @@ form > :last-child {
   gap: 8px;
   border-radius: 30px;
   background: #103931;
+  cursor: pointer;
 }
 
 .submitButton:hover {
@@ -265,18 +265,26 @@ form > :last-child {
 }
 
 .largeModal::-webkit-scrollbar {
-  width: 4px; /* Ширина скроллбара */
+  width: 4px;
 }
 
 .largeModal::-webkit-scrollbar-thumb {
-  background: rgba(17, 16, 28, 0.2); /* Цвет полоски */
-  border-radius: 10px; /* Закругление */
+  background: rgba(17, 16, 28, 0.2);
+  border-radius: 10px;
 }
 
 .largeModal::-webkit-scrollbar-thumb:hover {
-  background: rgba(17, 16, 28, 0.3); /* Чуть темнее при наведении */
+  background: rgba(17, 16, 28, 0.3);
 }
 
 .largeModal::-webkit-scrollbar-track {
-  background: transparent; /* Прозрачный фон */
+  background: transparent;
+}
+
+.error {
+  color: red;
+  font-size: 12px;
+  min-height: 16px;
+  margin-bottom: 4px;
+  display: block;
 }
